@@ -22,6 +22,31 @@ public class PlayerHealth : MonoBehaviour {
 		set { poisonCounter = value; }
 	}
 	
+	// Method for removing health
+	public void takeDamage(float damage)
+	{
+		health -= damage;
+		if (health <= 0)
+		{
+			health = 0;
+			// Death condition
+		}
+	}
+	
+	// Method for adding health
+	public void healDamage(float heal)
+	{
+		if (health < 100.0)
+		{
+			health += heal;
+		}
+		
+		if (health > 100.0)
+		{
+			health = 100.0;
+		}
+	}
+	
 	// Use this for initialization
 	void Start () {
 	
