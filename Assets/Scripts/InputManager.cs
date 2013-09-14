@@ -5,7 +5,7 @@ public class InputManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetButtonDown("Fire1")) {
 			ArrowShooter.Instance.FireArrow(Random.Range(0f, 1f));
 		}
 	}

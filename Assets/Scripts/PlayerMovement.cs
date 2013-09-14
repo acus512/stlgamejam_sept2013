@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour {
 			//Jump code
 			if(Input.GetButtonDown("Jump") && collidesBelow)
 			{
-				Debug.Log("Jumpped");
 				rigidbody.AddForce(transform.up * jumpSpeed);
 			}
 			

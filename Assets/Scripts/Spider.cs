@@ -49,7 +49,6 @@ public class Spider : MonoBehaviour {
 				if (lastAttack > TimeBetweenAttacks)
 				{
 					player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
-					Debug.Log("Player Attacked!");
 					lastAttack = 0f;
 				}
 				else
