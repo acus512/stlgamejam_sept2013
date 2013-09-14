@@ -53,9 +53,16 @@ public class Spider : MonoBehaviour {
 	void Update () {
 		if (die == false)
 		{
-			flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
-			flatNewPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-			distanceToPlayer = Vector3.Distance(flatTransform, flatNewPos);
+			if (player != null)
+			{
+				flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
+				flatNewPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+				distanceToPlayer = Vector3.Distance(flatTransform, flatNewPos);
+			}
+			else
+			{
+				distanceToPlayer = 100f;
+			}
 			
 			if (AttackVisionRange > distanceToPlayer)
 			{
