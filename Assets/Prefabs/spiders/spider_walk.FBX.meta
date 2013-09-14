@@ -123,6 +123,7 @@ ModelImporter:
     400116: spine_4
     4300000: spider_1
     7400000: walking_spider
+    7400002: Take 001
     9500000: //RootNode
     13700000: spider_1
   materials:

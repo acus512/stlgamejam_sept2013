@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1c06ccd346750454783b56e2c926931f
+guid: adbdc08c5dcad2045941ba556628b924
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,8 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cavern
-    6400000: //RootNode
+    4300000: CORNER_HALL
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -28,7 +27,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 10
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
