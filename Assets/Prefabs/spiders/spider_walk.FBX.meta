@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e00f27ac8705c1648bbab03ea6a642ec
+guid: 8e58295ff08d4134b8c2aa00359aee5a
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -122,7 +122,7 @@ ModelImporter:
     400114: spine_3
     400116: spine_4
     4300000: spider_1
-    7400000: Take 001
+    7400000: walking_spider
     9500000: //RootNode
     13700000: spider_1
   materials:
