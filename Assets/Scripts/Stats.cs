@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerHealth : MonoBehaviour {
+public class Stats : MonoBehaviour {
 	
 	private float timerSecond = 0;
 	private float timer5Second = 0;

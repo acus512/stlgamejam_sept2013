@@ -26,10 +26,10 @@ public class Arrow : MonoBehaviour {
 	{
 		_rigidbody.isKinematic = true;
 
-		var enemy = collision.gameObject.GetComponent<Enemy>();
-		if (enemy != null) {
+		if (collision.transform.tag == "Enemy") {
 			//Deal damage to enemy
-			transform.parent = enemy.transform;
+			transform.parent = collision.transform;
+			collision.transform.SendMessage("TakeDamage", 100,SendMessageOptions.DontRequireReceiver);
 		}
 	}
 }
