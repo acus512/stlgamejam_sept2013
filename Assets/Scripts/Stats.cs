@@ -30,6 +30,7 @@ public class Stats : MonoBehaviour {
 		{
 			health = 0;
 			// Death condition
+			SendMessage("Die");
 		}
 	}
 	
