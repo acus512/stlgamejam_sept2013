@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 819d51b467a694c49bdbb63e86f06999
+guid: 4a9f49420f97861488199d6b2551628b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cavern
+    4300000: CORNER_CAV02
     6400000: //RootNode
     9500000: //RootNode
   materials:
