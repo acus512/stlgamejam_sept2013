@@ -21,7 +21,9 @@ public class Spider : MonoBehaviour {
 	GameObject player;
 	bool Attacking = false;
 	float lastAttack = 0f;
-	
+	public bool die = false;
+	float lastDeathFlash = 0;
+	int deathFlashCount = 0;
 	// Use this for initialization
 	void Start () {
 		
@@ -33,66 +35,103 @@ public class Spider : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
-		flatNewPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
-		distanceToPlayer = Vector3.Distance(flatTransform, flatNewPos);
-		
-		if (AttackVisionRange > distanceToPlayer)
+		if (die == false)
 		{
-			Attacking = true;
+			flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
+			flatNewPos = new Vector3(player.transform.position.x, 0, player.transform.position.z);
+			distanceToPlayer = Vector3.Distance(flatTransform, flatNewPos);
 			
-			
-			if (AttackRange > distanceToPlayer)
+			if (AttackVisionRange > distanceToPlayer)
 			{
-				//Attack player
-				if (lastAttack > TimeBetweenAttacks)
+				Attacking = true;
+				
+				
+				if (AttackRange > distanceToPlayer)
 				{
-					player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
-					lastAttack = 0f;
+					//Attack player
+					if (lastAttack > TimeBetweenAttacks)
+					{
+						player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
+						lastAttack = 0f;
+					}
+					else
+					{
+						lastAttack += Time.deltaTime;	
+					}
 				}
 				else
 				{
-					lastAttack += Time.deltaTime;	
-				}
+					//Move towards the player
+					transform.LookAt(player.transform);
+					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+					//rigidbody.AddForce (transform.forward *MovementSpeed );
+					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+				}			
 			}
 			else
 			{
-				//Move towards the player
-				transform.LookAt(player.transform);
-				transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-				//rigidbody.AddForce (transform.forward *MovementSpeed );
-				rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
-			}			
+				lastAttack = 0f;
+				Attacking = false;
+				flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
+				flatNewPos = new Vector3(newPos.x, 0, newPos.z);
+				distanceToNewPos = Vector3.Distance(flatTransform, flatNewPos);
+				
+				if (pointRange > distanceToNewPos)
+				{
+					//Find a new random position within the movement radius
+					newPos = startPos + (Random.insideUnitSphere * MovementRadius);
+					transform.LookAt(newPos);
+					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+				}
+				else
+				{
+					//not at new position, so move some towards it.
+					//transform.LookAt(newPos);
+					//transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+					transform.LookAt(newPos);
+					
+					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+					//rigidbody.AddForce (transform.forward *MovementSpeed );
+					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+				}
+			}
 		}
 		else
 		{
-			lastAttack = 0f;
-			Attacking = false;
-			flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
-			flatNewPos = new Vector3(newPos.x, 0, newPos.z);
-			distanceToNewPos = Vector3.Distance(flatTransform, flatNewPos);
-			
-			if (pointRange > distanceToNewPos)
+			//Spider has been killed.  Play death animation then destroy.
+			if (deathFlashCount >= 10)
 			{
-				//Find a new random position within the movement radius
-				newPos = startPos + (Random.insideUnitSphere * MovementRadius);
-				transform.LookAt(newPos);
-				transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+				Destroy(gameObject);
 			}
 			else
 			{
-				//not at new position, so move some towards it.
-				//transform.LookAt(newPos);
-				//transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-				transform.LookAt(newPos);
-				
-				transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-				//rigidbody.AddForce (transform.forward *MovementSpeed );
-				rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+				if (lastDeathFlash > .2f)
+				{
+			
+					Renderer[] rs = GetComponentsInChildren<Renderer>();
+
+					foreach(Renderer r in rs)
+					{
+						r.enabled = !r.enabled ;
+					}
+     					
+					
+					
+					
+					deathFlashCount += 1;
+					//transform.transform[0].renderer.enabled = !transform.renderer.enabled;
+					lastDeathFlash = 0f;
+				}
+				else
+				{
+					lastDeathFlash += Time.deltaTime;					
+				}
 			}
 		}
-		
-		
+	}
+	
+	public void Die()
+	{
+		die = true;
 	}
 }
