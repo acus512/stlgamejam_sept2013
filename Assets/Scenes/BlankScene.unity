@@ -781,8 +781,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 300
-  turnSpeed: 5
-  jumpSpeed: 150
+  runMultiplyer: 1.5
+  turnSpeed: 250
+  jumpSpeed: 300
   gravityChangeSpeed: 3
   camera: {fileID: 1566578276}
   collidesBelow: 0
