@@ -96,7 +96,7 @@ public class OVRCameraController : OVRComponent
 	
 	// UNITY CAMERA FIELDS
 	// Set the background color for both cameras
-	private Color 		backgroundColor = new Color(0.192f, 0.302f, 0.475f, 1.0f);
+	public Color 		backgroundColor = Color.black;//new Color(0.192f, 0.302f, 0.475f, 1.0f);
 	public  Color       BackgroundColor
 	{
 		get{return backgroundColor;}
