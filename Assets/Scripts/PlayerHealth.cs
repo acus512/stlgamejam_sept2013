@@ -7,11 +7,11 @@ public class PlayerHealth : MonoBehaviour {
 	private float timer5Second = 0;
 	
 	// Main player health indicator
-	private float health = 100.0f;
+	public float health = 100.0f;
 	public float Health
 	{
 		get { return health; }
-		set { health = value; }
+		set { health = value;}
 	}
 	
 	// Amount of poison counters currently affecting player health
@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 	
 	// Method for removing health
-	public void takeDamage(float damage)
+	public void TakeDamage(float damage)
 	{
 		health -= damage;
 		if (health <= 0)
@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour {
 	}
 	
 	// Method for adding health
-	public void healDamage(float heal)
+	public void HealDamage(float heal)
 	{
 		if (health < 100.0f)
 		{
