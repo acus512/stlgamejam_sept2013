@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: cb6c82c1dae595f4b821920d18e14732
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: IK Chain001
+    100002: IK Chain002
+    100004: IK Chain004
+    100006: IK Chain005
+    100008: IK Chain006
+    100010: IK Chain007
+    100012: IK Chain008
+    100014: IK Chain009
+    100016: left_con_leg_1
+    100018: left_con_leg_2
+    100020: left_con_leg_3
+    100022: left_con_leg_4
+    100024: left_knee_1
+    100026: left_knee_2
+    100028: left_knee_3
+    100030: left_knee_4
+    100032: left_leg_1
+    100034: left_leg_2
+    100036: left_leg_3
+    100038: left_leg_4
+    100040: left_leg_hip_1
+    100042: left_leg_hip_2
+    100044: left_leg_hip_3
+    100046: left_leg_hip_4
+    100048: left_mandible
+    100050: left_shoulder
+    100052: left_toe_1
+    100054: left_toe_2
+    100056: left_toe_3
+    100058: left_toe_4
+    100060: right_con_leg_1
+    100062: right_con_leg_2
+    100064: right_con_leg_3
+    100066: right_con_leg_4
+    100068: right_knee_1
+    100070: right_knee_2
+    100072: right_knee_3
+    100074: right_knee_4
+    100076: right_leg_1
+    100078: right_leg_2
+    100080: right_leg_3
+    100082: right_leg_4
+    100084: right_leg_hip_1
+    100086: right_leg_hip_2
+    100088: right_leg_hip_3
+    100090: right_leg_hip_4
+    100092: right_mandible
+    100094: right_shoulder
+    100096: right_toe_1
+    100098: right_toe_2
+    100100: right_toe_3
+    100102: right_toe_4
+    100104: root
+    100106: spider_1
+    100108: //RootNode
+    100110: spine_1
+    100112: spine_2
+    100114: spine_3
+    100116: spine_4
+    400000: IK Chain001
+    400002: IK Chain002
+    400004: IK Chain004
+    400006: IK Chain005
+    400008: IK Chain006
+    400010: IK Chain007
+    400012: IK Chain008
+    400014: IK Chain009
+    400016: left_con_leg_1
+    400018: left_con_leg_2
+    400020: left_con_leg_3
+    400022: left_con_leg_4
+    400024: left_knee_1
+    400026: left_knee_2
+    400028: left_knee_3
+    400030: left_knee_4
+    400032: left_leg_1
+    400034: left_leg_2
+    400036: left_leg_3
+    400038: left_leg_4
+    400040: left_leg_hip_1
+    400042: left_leg_hip_2
+    400044: left_leg_hip_3
+    400046: left_leg_hip_4
+    400048: left_mandible
+    400050: left_shoulder
+    400052: left_toe_1
+    400054: left_toe_2
+    400056: left_toe_3
+    400058: left_toe_4
+    400060: right_con_leg_1
+    400062: right_con_leg_2
+    400064: right_con_leg_3
+    400066: right_con_leg_4
+    400068: right_knee_1
+    400070: right_knee_2
+    400072: right_knee_3
+    400074: right_knee_4
+    400076: right_leg_1
+    400078: right_leg_2
+    400080: right_leg_3
+    400082: right_leg_4
+    400084: right_leg_hip_1
+    400086: right_leg_hip_2
+    400088: right_leg_hip_3
+    400090: right_leg_hip_4
+    400092: right_mandible
+    400094: right_shoulder
+    400096: right_toe_1
+    400098: right_toe_2
+    400100: right_toe_3
+    400102: right_toe_4
+    400104: root
+    400106: spider_1
+    400108: //RootNode
+    400110: spine_1
+    400112: spine_2
+    400114: spine_3
+    400116: spine_4
+    4300000: spider_1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: spider_1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
