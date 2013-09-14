@@ -7,18 +7,21 @@ public class Spider : MonoBehaviour {
 	public float MovementSpeed = 3f;
 	public float AttackVisionRange = 3f;
 	public float AttackRange = 1f;
+	public float AttackDamage = 10f;
+	public float TimeBetweenAttacks = .5f;
 	
 	//private vars
-	public Vector3 startPos;
-	public Vector3 newPos;
-	public float pointRange = .5f;
-	public Vector3 flatTransform;
-	public Vector3 flatNewPos;
-	public float distanceToNewPos;
-	public float distanceToPlayer;
-	public GameObject player;
-	public bool Attacking = false;
-
+	Vector3 startPos;
+	Vector3 newPos;
+	float pointRange = .5f;
+	Vector3 flatTransform;
+	Vector3 flatNewPos;
+	float distanceToNewPos;
+	float distanceToPlayer;
+	GameObject player;
+	bool Attacking = false;
+	float lastAttack = 0f;
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -43,8 +46,16 @@ public class Spider : MonoBehaviour {
 			if (AttackRange > distanceToPlayer)
 			{
 				//Attack player
-				Debug.Log("Attacking Player");
-				
+				if (lastAttack > TimeBetweenAttacks)
+				{
+					player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
+					Debug.Log("Player Attacked!");
+					lastAttack = 0f;
+				}
+				else
+				{
+					lastAttack += Time.deltaTime;	
+				}
 			}
 			else
 			{
@@ -57,6 +68,7 @@ public class Spider : MonoBehaviour {
 		}
 		else
 		{
+			lastAttack = 0f;
 			Attacking = false;
 			flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
 			flatNewPos = new Vector3(newPos.x, 0, newPos.z);

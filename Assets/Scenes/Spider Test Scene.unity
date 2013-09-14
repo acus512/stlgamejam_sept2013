@@ -308,15 +308,8 @@ MonoBehaviour:
   MovementSpeed: 5
   AttackVisionRange: 8
   AttackRange: 3
-  startPos: {x: 0, y: 0, z: 0}
-  newPos: {x: 0, y: 0, z: 0}
-  pointRange: .5
-  flatTransform: {x: 0, y: 0, z: 0}
-  flatNewPos: {x: 0, y: 0, z: 0}
-  distanceToNewPos: 0
-  distanceToPlayer: 0
-  player: {fileID: 0}
-  Attacking: 0
+  AttackDamage: 10
+  TimeBetweenAttacks: .5
 --- !u!1 &540344232
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,15 +573,8 @@ MonoBehaviour:
   MovementSpeed: 5
   AttackVisionRange: 8
   AttackRange: 3
-  startPos: {x: 0, y: 0, z: 0}
-  newPos: {x: 0, y: 0, z: 0}
-  pointRange: .5
-  flatTransform: {x: 0, y: 0, z: 0}
-  flatNewPos: {x: 0, y: 0, z: 0}
-  distanceToNewPos: 0
-  distanceToPlayer: 0
-  player: {fileID: 0}
-  Attacking: 0
+  AttackDamage: 10
+  TimeBetweenAttacks: .5
 --- !u!65 &1318297287
 BoxCollider:
   m_ObjectHideFlags: 0
