@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 	public float playerSpeed = 3f;
+	public float runMultiplyer = 1.5f;
 	public float turnSpeed = 3f;
 	public float jumpSpeed = 100f;
 	public float gravityChangeSpeed = 3f;
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour {
 			Time.timeScale = 1;
 			//Movement (based on gameobject, not camera look for oculus rift.)
 			var moveDirection = new Vector3(Input.GetAxis("Horizontal")*playerSpeed*Time.deltaTime, 0, Input.GetAxis("Vertical")*playerSpeed*Time.deltaTime);
+			if(Input.GetButton("Run"))
+			{
+				moveDirection *= runMultiplyer;
+			}
 			moveDirection += (gravity)*Time.deltaTime;
 			moveDirection = transform.TransformDirection(moveDirection);
 			
