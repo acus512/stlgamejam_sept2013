@@ -231,6 +231,7 @@ GameObject:
   - 54: {fileID: 475634025}
   - 65: {fileID: 475634026}
   - 114: {fileID: 475634027}
+  - 114: {fileID: 475634028}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -310,6 +311,19 @@ MonoBehaviour:
   AttackRange: 3
   AttackDamage: 10
   TimeBetweenAttacks: .5
+--- !u!114 &475634028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: d5013780bcb692a45b8603ad85ae78bf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1662680438}
+  m_GameObject: {fileID: 475634022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3ecbb83462a1d46ae2ec9d0c242baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1 &540344232
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +552,7 @@ GameObject:
   - 54: {fileID: 1318297288}
   - 65: {fileID: 1318297287}
   - 114: {fileID: 1318297286}
+  - 114: {fileID: 1318297290}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -617,6 +632,19 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!114 &1318297290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: d5013780bcb692a45b8603ad85ae78bf,
+    type: 2}
+  m_PrefabInternal: {fileID: 1219788812}
+  m_GameObject: {fileID: 1318297284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3ecbb83462a1d46ae2ec9d0c242baa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
 --- !u!1001 &1662680438
 Prefab:
   m_ObjectHideFlags: 0
