@@ -16,22 +16,22 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 2, y: 2}
+          m_Texture: {fileID: 2800000, guid: fa05ae1de664e6b4098c122c1207f34d, type: 3}
+          m_Scale: {x: 3, y: 3}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
           m_Texture: {fileID: 2800000, guid: e08c295755c0885479ad19f518286ff2, type: 3}
-          m_Scale: {x: 2, y: 2}
+          m_Scale: {x: 3, y: 3}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 2800000, guid: 17da6d53ec93a0444bd0f751b1d02477, type: 3}
-          m_Scale: {x: 2, y: 2}
+          m_Scale: {x: 3, y: 3}
           m_Offset: {x: 0, y: 0}
       data:
         first:
@@ -47,12 +47,12 @@ Material:
         second: .0732631832
       data:
         first:
-          name: _EdgeLength
-        second: 12.3068314
-      data:
-        first:
           name: _Parallax
         second: .354557991
+      data:
+        first:
+          name: _EdgeLength
+        second: 12.3068314
       data:
         first:
           name: _EmissionLM

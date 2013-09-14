@@ -29,7 +29,8 @@ public class Arrow : MonoBehaviour {
 		if (collision.transform.tag == "Enemy") {
 			//Deal damage to enemy
 			transform.parent = collision.transform;
-			collision.transform.SendMessage("TakeDamage", 100,SendMessageOptions.DontRequireReceiver);
+			collision.transform.SendMessage("TakeDamage", 50,SendMessageOptions.DontRequireReceiver);
+			Destroy(gameObject.transform.FindChild("Capsule").collider);
 		}
 	}
 }
