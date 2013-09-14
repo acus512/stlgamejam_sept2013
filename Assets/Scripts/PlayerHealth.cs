@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour {
 	private float timer5Second = 0;
 	
 	// Main player health indicator
-	private float health = 100.0;
+	private float health = 100.0f;
 	public float Health
 	{
 		get { return health; }
@@ -36,14 +36,14 @@ public class PlayerHealth : MonoBehaviour {
 	// Method for adding health
 	public void healDamage(float heal)
 	{
-		if (health < 100.0)
+		if (health < 100.0f)
 		{
 			health += heal;
 		}
 		
-		if (health > 100.0)
+		if (health > 100.0f)
 		{
-			health = 100.0;
+			health = 100.0f;
 		}
 	}
 	
@@ -71,11 +71,11 @@ public class PlayerHealth : MonoBehaviour {
 		{
 			// Death condition
 		}
-		else if (PoisonCounter == 0 && Health < 100.0)
+		else if (PoisonCounter == 0 && Health < 100.0f)
 		{
-			health += 2.5;
-			if (health > 100.0)
-				health = 100.0;
+			health += 2.5f;
+			if (health > 100.0f)
+				health = 100.0f;
 		}
 		else if (PoisonCounter > 0)
 		{
