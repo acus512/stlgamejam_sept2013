@@ -64,17 +64,20 @@ public class Spider : MonoBehaviour {
 				
 				if (AttackRange > distanceToPlayer)
 				{
+					//change to the attack mesh
+					if (CurAnimation != Animations.Attack)
+					{
+						CurAnimation = Animations.Attack;
+						walk.renderer.enabled = false;
+						attack.renderer.enabled = true;
+						//attack.animation.Play("Take 001");							
+					}
+					
+					
 					//Attack player
 					if (lastAttack > TimeBetweenAttacks)
 					{
-						//change to the attack mesh
-						if (CurAnimation != Animations.Attack)
-						{
-							CurAnimation = Animations.Attack;
-							walk.renderer.enabled = false;
-							attack.renderer.enabled = true;
-							//attack.animation.Play("Take 001");							
-						}
+						
 						
 						player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
 						lastAttack = 0f;
@@ -86,6 +89,15 @@ public class Spider : MonoBehaviour {
 				}
 				else
 				{
+					//change to the attack mesh
+					if (CurAnimation != Animations.Walk)
+					{
+						CurAnimation = Animations.Walk;
+						walk.renderer.enabled = true;
+						attack.renderer.enabled = false;
+						//attack.animation.Play("Take 001");							
+					}
+					
 					//Move towards the player
 					transform.LookAt(player.transform);
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
@@ -95,6 +107,16 @@ public class Spider : MonoBehaviour {
 			}
 			else
 			{
+				//change to the attack mesh
+				if (CurAnimation != Animations.Walk)
+				{
+					CurAnimation = Animations.Walk;
+					walk.renderer.enabled = true;
+					attack.renderer.enabled = false;
+					//attack.animation.Play("Take 001");							
+				}
+					
+				
 				lastAttack = 0f;
 				Attacking = false;
 				flatTransform = new Vector3(transform.position.x, 0, transform.position.z);

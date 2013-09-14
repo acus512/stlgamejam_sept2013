@@ -16,12 +16,57 @@ Material:
         first:
           name: _MainTex
         second:
+          m_Texture: {fileID: 2800000, guid: fa05ae1de664e6b4098c122c1207f34d, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 2800000, guid: b85f14cafdc77d040b3fd12b90f13ba5, type: 3}
+          m_Scale: {x: .100000001, y: .100000001}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ParallaxMap
+        second:
+          m_Texture: {fileID: 2800000, guid: 3b9d294ed7d396e4aa927b9efa53a89c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Illum
+        second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-    m_Floats: {}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .701656938
+      data:
+        first:
+          name: _EdgeLength
+        second: 14.2238808
+      data:
+        first:
+          name: _Smoothness
+        second: .589552224
+      data:
+        first:
+          name: _Parallax
+        second: .5
+      data:
+        first:
+          name: _EmissionLM
+        second: 0
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .5, g: .5, b: .5, a: 1}
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .16911763, g: .16911763, b: .16911763, a: .360784322}
