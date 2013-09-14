@@ -23,7 +23,7 @@ public class Spider : MonoBehaviour {
 	float pointRange = .5f;
 	Vector3 flatTransform;
 	Vector3 flatNewPos;
-	float distanceToNewPos;
+	public float distanceToNewPos;
 	float distanceToPlayer;
 	GameObject player;
 	bool Attacking = false;
@@ -34,7 +34,8 @@ public class Spider : MonoBehaviour {
 	GameObject walk;
 	GameObject attack;
 	Animations CurAnimation;
-	
+	float RotateSpeed = .01f;
+	Quaternion newRot;
 	
 	// Use this for initialization
 	void Start () {
@@ -46,7 +47,6 @@ public class Spider : MonoBehaviour {
 		walk = transform.FindChild ("Walk").gameObject.transform.FindChild("spider_1").gameObject;
 		attack = transform.FindChild("Attack").gameObject.transform.FindChild("spider_1").gameObject;
 		CurAnimation = Animations.Walk;
-		
 	}	
 	
 	// Update is called once per frame
@@ -106,7 +106,7 @@ public class Spider : MonoBehaviour {
 					}
 					
 					//Move towards the player
-					transform.LookAt(player.transform);
+									
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 					//rigidbody.AddForce (transform.forward *MovementSpeed );
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
@@ -114,7 +114,7 @@ public class Spider : MonoBehaviour {
 			}
 			else
 			{
-				//change to the attack mesh
+				//change to the walk mesh if we aren't on it
 				if (CurAnimation != Animations.Walk)
 				{
 					CurAnimation = Animations.Walk;
@@ -134,19 +134,42 @@ public class Spider : MonoBehaviour {
 				{
 					//Find a new random position within the movement radius
 					newPos = startPos + (Random.insideUnitSphere * MovementRadius);
-					transform.LookAt(newPos);
-					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+					Vector3 relativePos = newPos - transform.position;
+        
+					newRot = Quaternion.LookRotation(relativePos);
+					
+					
 				}
 				else
 				{
 					//not at new position, so move some towards it.
-					//transform.LookAt(newPos);
-					//transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-					transform.LookAt(newPos);
 					
+					
+							
+					
+					transform.LookAt(newPos);
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-					//rigidbody.AddForce (transform.forward *MovementSpeed );
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+					
+					
+					/*
+					//if (Mathf.Abs((float)(newRot.eulerAngles.y - transform.rotation.eulerAngles.y)) > 1f)
+					if (newRot.eulerAngles.y != transform.rotation.eulerAngles.y)
+					{
+						//transform.rotation = Quaternion.Lerp(transform.rotation, newRot, Time.deltaTime * RotateSpeed);
+						transform.eulerAngles = new Vector3(0, newRot.eulerAngles.y, 0);
+					}
+					else
+					{
+						transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
+						rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+					}
+					
+					*/
+					
+					
+					
+					
 				}
 			}
 		}
@@ -195,6 +218,16 @@ public class Spider : MonoBehaviour {
 			}
 		}
 	}
+	/*
+	void OnDrawGizmos()
+	{
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(new Vector3(newPos.x,0,newPos.z),1f);
+		GameObject pointer = GameObject.Find ("pointer");
+		//pointer.transform.rotation = new Vector3(newRot.x, 0, newRot.z);
+		pointer.transform.eulerAngles = new Vector3(0, newRot.eulerAngles.y, 0);
+		pointer.transform.position = transform.position ;
+	}*/
 	
 	public void Die()
 	{
