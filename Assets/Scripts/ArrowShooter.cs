@@ -44,7 +44,8 @@ public class ArrowShooter : MonoBehaviour {
 			Debug.LogError("Couldn't instantiate arrow!");
 			return;
 		}
-
+		
+		Destroy (newArrow,30);
 		arrowTimer += arrowCooldown;
 		float impulse = Mathf.Lerp(minImpulse, maxImpulse, amountCharged);
 		newArrow.rigidbody.AddForce(impulse * newArrow.transform.forward, ForceMode.Impulse);
