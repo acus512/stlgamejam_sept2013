@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e00f27ac8705c1648bbab03ea6a642ec
+guid: 402c1bca0c2c65d4e8ec75a995d8b89b
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -122,9 +122,10 @@ ModelImporter:
     400114: spine_3
     400116: spine_4
     4300000: spider_1
-    7400000: Take 001
-    7400002: idle_spider
+    7400000: attacking_spider
+    7400002: Take 001
     9500000: //RootNode
+    11100000: //RootNode
     13700000: spider_1
   materials:
     importMaterials: 1
@@ -138,11 +139,32 @@ ModelImporter:
     animationPositionError: .5
     animationScaleError: .5
     animationWrapMode: 0
-    clipAnimations: []
+    clipAnimations:
+    - name: Take 001
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      transformMask: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -176,5 +198,5 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   additionalBone: 1
-  animationType: 2
+  animationType: 1
   userData: 
