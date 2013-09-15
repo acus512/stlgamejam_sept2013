@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Thumper : MonoBehaviour {
+public class ThumperTrigger : MonoBehaviour {
 	
 	GameObject thumper;
-	Collider player;
+
 	
 	// Use this for initialization
 	void Start () {
@@ -17,25 +17,9 @@ public class Thumper : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-    	if (thumper.animation.isPlaying == false)
+		if (other.name != "Thumper" && thumper.animation.isPlaying == false)
 		{
-		
-			player = other;
 			thumper.animation.Play ("Take 001");
-			
 		}
-		else
-		{
-			if (collider.name == "Thumper")
-			{
-				player.gameObject.SendMessage("Die", SendMessageOptions.DontRequireReceiver);
-			}
-		}
-				
-			
-		
     }
-	
-	
-	
 }
