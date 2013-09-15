@@ -2,58 +2,95 @@
 using System.Collections;
 
 public class InGameMenu : MonoBehaviour {
-	public Texture2D Checked;
-	public Texture2D Unchecked;
-	public Camera MainCamera;
-	public OVRCameraController riftCamera;
+	public Material Checked;
+	public Material Unchecked;
+	public GameObject nonRiftCamera;
+	public GameObject riftCamera;
+	public LayerMask HitMask;
+	public GameObject invertCheckbox;
+	public GameObject oculusCheckbox;
+	public GameObject CursorObject;
 	
 	private bool invert = false;
-	private bool oculus = false;
+	public bool oculus = false;
 	
 	void Start()
 	{
-		
+		invert = bool.Parse(PlayerPrefs.GetString("Invert"));
 	}
-	
 	void Update()
 	{
-		if(Input.GetMouseButton(0))
+		if(invert)
 		{
-			RaycastHit hit;
-			
+			invertCheckbox.renderer.material = Checked;
+		}else{
+			invertCheckbox.renderer.material = Unchecked;
+		}
+		
+		if(oculus)
+		{
+			oculusCheckbox.renderer.material = Checked;
+		}else{
+			oculusCheckbox.renderer.material = Unchecked;
+		}
+		
+		RaycastHit hit;
+		Transform leftRift = riftCamera.transform.FindChild("CameraRight");
+		if(riftCamera.activeSelf)
+		{
+			if(Physics.Raycast(riftCamera.transform.position,leftRift.forward, out hit,100,HitMask))
+			{
+				Debug.DrawLine(riftCamera.transform.position,leftRift.position + (10*leftRift.forward),Color.yellow);
+				if (hit.transform != null)
+				{
+					CursorObject.transform.position = hit.point;
+				}
+			}
+		}
+		
+		if(Input.GetMouseButtonDown(0))
+		{
 			if(oculus)
 			{
-				if (Physics.Raycast(MainCamera.ScreenPointToRay(Input.mousePosition), out hit))
-				{	
-					if (hit.transform != null)
-					{
-						switch(hit.transform.name)
-						{
-							case "Invert Mouse":
-								Debug.Log("Inverting Mouse");
-								break;
-							case "Enable Rift":
-								riftCamera.enabled = false;
-								MainCamera.enabled = true;
-								Debug.Log("Toggling Rift");
-								break;
-						}
-						
-					}
-				}
-			}else{
-				if (Physics.Raycast(MainCamera.ScreenPointToRay(Input.mousePosition), out hit))
+				if(Physics.Raycast(riftCamera.transform.position,leftRift.forward, out hit,100,HitMask))
 				{
 					if (hit.transform != null)
 					{
-						switch(hit.transform.name)
+						Debug.Log("Hit something: " + hit.collider.transform.name);
+						switch(hit.collider.transform.name)
 						{
 							case "Invert Mouse":
+								invert = !invert;
+								PlayerPrefs.SetString("Invert",invert.ToString());
 								Debug.Log("Inverting Mouse");
 								break;
 							case "Enable Rift":
-								riftCamera.enabled = true;
-								MainCamera.enabled = false;
+								Debug.Log("Disable the rift");
+								oculus = false;
+								nonRiftCamera.camera.enabled = true;
+								riftCamera.SetActive(false);
+								break;
+						}
+					}
+				}
+			}else{
+				if (Physics.Raycast(nonRiftCamera.camera.ScreenPointToRay(Input.mousePosition), out hit,100,HitMask))
+				{
+					if (hit.collider.transform != null)
+					{
+						Debug.Log("SHOULDN'T SEE ME ON THE RIFT");
+						Debug.Log("Hit something: " + hit.collider.transform.name);
+						switch(hit.collider.transform.name)
+						{
+							case "Invert Mouse":
+								invert = !invert;
+								PlayerPrefs.SetString("Invert",invert.ToString());
+								Debug.Log("Inverting Mouse");
+								break;
+							case "Enable Rift":
+								oculus = true;
+								riftCamera.SetActive(true);
+								nonRiftCamera.camera.enabled = false;
 								break;
 						}
 						

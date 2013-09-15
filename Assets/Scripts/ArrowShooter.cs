@@ -34,21 +34,24 @@ public class ArrowShooter : MonoBehaviour {
 	//amountCharged should be from 0 to 1
 	public void FireArrow(float amountCharged)
 	{
-		if (arrowTimer > 0) {
-			Debug.Log("Arrow isn't ready to fire yet.");
-			return;
+		if(Time.timeScale != 0)
+		{
+			if (arrowTimer > 0) {
+				Debug.Log("Arrow isn't ready to fire yet.");
+				return;
+			}
+	
+			Arrow newArrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as Arrow;
+			/*if (newArrow == null) {
+				Debug.LogError("Couldn't instantiate arrow!");
+				return;
+			}*/
+			
+			Destroy (newArrow.gameObject,20);
+			arrowTimer += arrowCooldown;
+			float impulse = Mathf.Lerp(minImpulse, maxImpulse, amountCharged);
+			newArrow.rigidbody.AddForce(impulse * newArrow.transform.forward, ForceMode.Impulse);
 		}
-
-		Arrow newArrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as Arrow;
-		/*if (newArrow == null) {
-			Debug.LogError("Couldn't instantiate arrow!");
-			return;
-		}*/
-		
-		Destroy (newArrow.gameObject,20);
-		arrowTimer += arrowCooldown;
-		float impulse = Mathf.Lerp(minImpulse, maxImpulse, amountCharged);
-		newArrow.rigidbody.AddForce(impulse * newArrow.transform.forward, ForceMode.Impulse);
 	}
 
 
