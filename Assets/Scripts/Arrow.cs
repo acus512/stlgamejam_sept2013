@@ -5,6 +5,7 @@ public class Arrow : MonoBehaviour {
 
 	Transform _transform;
 	Rigidbody _rigidbody;
+	public AudioClip[] sounds;
 
 	void Awake()
 	{
@@ -32,5 +33,6 @@ public class Arrow : MonoBehaviour {
 			collision.transform.SendMessage("TakeDamage", 50,SendMessageOptions.DontRequireReceiver);
 			Destroy(gameObject.transform.FindChild("Capsule").collider);
 		}
+		GetComponent<AudioSource>().PlayOneShot(sounds[Random.Range(0,sounds.GetUpperBound(0))]);
 	}
 }
