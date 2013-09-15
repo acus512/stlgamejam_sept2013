@@ -248,6 +248,7 @@ GameObject:
   - 82: {fileID: 8200014}
   - 82: {fileID: 8200016}
   - 82: {fileID: 8200018}
+  - 114: {fileID: 11400024}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -1593,7 +1594,7 @@ MonoBehaviour:
   newColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11400024
 MonoBehaviour:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100026}
