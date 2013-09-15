@@ -38,7 +38,7 @@ public class Arrow : MonoBehaviour {
 			Application.LoadLevel (1);
 			break;
 		case "ExitButton":
-			Debug.Log("Chose to exit.");
+			Application.Quit();
 			break;
 		}
 		

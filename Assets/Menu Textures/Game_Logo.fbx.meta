@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d4caf73a33efab44e92305ef9731c767
+guid: 14de97c605f1ef049ab99b3252108650
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pPlane1
+    4300000: Game_Logo
     9500000: //RootNode
   materials:
     importMaterials: 1
