@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour {
 	public Vector3 vel;
 	public Vector3 curUp;
 	public bool lockControls = false;
+	private bool dead = false;
+	private float deadDuration = 3;
+	private float deadCurTime = 0;
+	public Texture2D deadTexture;
 	
 	// Use this for initialization
 	void Start () {
@@ -27,6 +31,11 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
 	{	
 		RaycastHit hit = new RaycastHit();
+		if(Input.GetButtonDown("Menu"))
+		{
+			lockControls = !lockControls;
+			Time.timeScale = 0;
+		}
 		if(!lockControls)
 		{
 			Time.timeScale = 1;
@@ -54,7 +63,7 @@ public class PlayerMovement : MonoBehaviour {
 			transform.Rotate(new Vector3(0,(Input.GetAxis("Mouse X")+-Input.GetAxis("JoyX"))*turnSpeed*Time.deltaTime,0));
 			camera.transform.Rotate(new Vector3((-Input.GetAxis("Mouse Y")+-Input.GetAxis("JoyY"))*turnSpeed*Time.deltaTime,0f,0f));
 		}else{
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 		}
 
 		//resets collision flags. 
@@ -84,5 +93,25 @@ public class PlayerMovement : MonoBehaviour {
 	public void UnlockControls()
 	{
 		lockControls = false;
+	}
+	
+	public void Die()
+	{
+		dead = true;	
+		lockControls = true;
+	}
+	
+	void OnGUI()
+	{
+		if(dead)
+		{
+			deadCurTime += Time.deltaTime;
+			GUI.color = new Color (0,0,0,deadCurTime/deadDuration);
+			GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height),deadTexture);
+			if(deadCurTime >= deadDuration)
+			{
+				Application.LoadLevel(Application.loadedLevel);	
+			}
+		}
 	}
 }
