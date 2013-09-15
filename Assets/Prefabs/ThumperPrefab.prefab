@@ -246,9 +246,10 @@ Animation:
   m_GameObject: {fileID: 100008}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: f884fd006e0a7ea449777d7b7b3dcb66, type: 3}
+  m_Animation: {fileID: 7400000, guid: 5de7efffdf0518a44a043f6197ed3102, type: 3}
   m_Animations:
   - {fileID: 7400000, guid: f884fd006e0a7ea449777d7b7b3dcb66, type: 3}
+  - {fileID: 7400000, guid: 5de7efffdf0518a44a043f6197ed3102, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -288,7 +289,7 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300000, guid: f884fd006e0a7ea449777d7b7b3dcb66, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 5de7efffdf0518a44a043f6197ed3102, type: 3}
   m_Bones:
   - {fileID: 400006}
   m_RootBone: {fileID: 400006}
