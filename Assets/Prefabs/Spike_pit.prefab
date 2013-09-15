@@ -104,6 +104,7 @@ GameObject:
   - 23: {fileID: 2300008}
   - 95: {fileID: 9500008}
   - 65: {fileID: 6500008}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Spike_pit
   m_TagString: Untagged
@@ -173,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: -.500221074, y: -.499778867, z: .499778867, w: .500221133}
-  m_LocalPosition: {x: 90.8583374, y: 81.0000839, z: 195.813232}
+  m_LocalPosition: {x: -6.39074135, y: 1.6623764, z: 6.01972771}
   m_LocalScale: {x: 51.8397942, y: 15.6291094, z: 15.6291094}
   m_Children:
   - {fileID: 400000}
@@ -362,10 +363,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .0377963819, y: .34198913, z: .34198913}
+  m_Size: {x: -.270000011, y: .550000012, z: .460000008}
   m_Center: {x: .0188982021, y: 0, z: 0}
 --- !u!95 &9500000
 Animator:
@@ -462,6 +463,17 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f4dd1d4e30f2db40adf13f0f57ed228, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
