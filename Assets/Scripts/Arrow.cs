@@ -26,13 +26,22 @@ public class Arrow : MonoBehaviour {
 	void OnCollisionEnter(Collision collision)
 	{
 		_rigidbody.isKinematic = true;
-
-		if (collision.transform.tag == "Enemy") {
-			//Deal damage to enemy
+		
+		switch(collision.transform.tag)
+		{
+		case "Enemy":
 			transform.parent = collision.transform;
 			collision.transform.SendMessage("TakeDamage", 50,SendMessageOptions.DontRequireReceiver);
 			Destroy(gameObject.transform.FindChild("Capsule").collider);
+			break;
+		case "StartButton":
+			Application.LoadLevel ("Spider Test Scene");
+			break;
+		case "ExitButton":
+			Debug.Log("Chose to exit.");
+			break;
 		}
+		
 		GetComponent<AudioSource>().PlayOneShot(sounds[Random.Range(0,sounds.GetUpperBound(0))]);
 	}
 }
