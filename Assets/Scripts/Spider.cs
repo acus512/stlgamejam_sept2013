@@ -3,11 +3,12 @@ using System.Collections;
 
 
 public class Spider : MonoBehaviour {
-	enum Animations
+	enum AnimationsEnum
 	{
 		Walk,
 		Attack,
-		Idle	
+		Idle,
+		Dead
 	}
 	
 	//public vars
@@ -20,6 +21,8 @@ public class Spider : MonoBehaviour {
 	public AudioClip[] SoundList;
 	public AudioClip AttackSound;
 	public AudioClip SpiderHitSound;
+	
+	
 	//private vars
 	Vector3 startPos;
 	Vector3 newPos;
@@ -34,9 +37,8 @@ public class Spider : MonoBehaviour {
 	public bool die = false;
 	float lastDeathFlash = 0;
 	int deathFlashCount = 0;
-	GameObject walk;
-	GameObject attack;
-	Animations CurAnimation;
+	GameObject mesh;
+	AnimationsEnum CurAnimation;
 	float RotateSpeed = .01f;
 	Quaternion newRot;
 	float soundWait = 0f;
@@ -50,11 +52,12 @@ public class Spider : MonoBehaviour {
 		startPos = transform.position;
 		newPos = startPos;
 		player = GameObject.Find("Player");
-		walk = transform.FindChild ("Walk").gameObject.transform.FindChild("spider_1").gameObject;
-		attack = transform.FindChild("Attack").gameObject.transform.FindChild("spider_1").gameObject;
-		CurAnimation = Animations.Walk;
+		mesh = transform.FindChild ("Walk").gameObject;
+		CurAnimation = AnimationsEnum.Walk;
 		soundWait = Random.Range(0f, 10f);
 		soundPlayer = GetComponent<AudioSource>();
+		
+
 		
 	}	
 	
@@ -101,16 +104,18 @@ public class Spider : MonoBehaviour {
 				if (AttackRange > distanceToPlayer)
 				{
 					//change to the attack mesh
-					if (CurAnimation != Animations.Attack)
+					if (CurAnimation != AnimationsEnum.Attack)
 					{
-						CurAnimation = Animations.Attack;
-						walk.renderer.enabled = false;
-						attack.renderer.enabled = true;
-						//attack.animation.Play("Take 001");							
+						CurAnimation = AnimationsEnum.Attack;
+						mesh.animation.CrossFade("Attack"); 
+					}
+					
+					if (mesh.animation.isPlaying == false)
+					{
+						mesh.animation.Play("Attack"); 
 					}
 					
 					
-					//Attack player
 					if (lastAttack > TimeBetweenAttacks)
 					{
 						soundPlayer.PlayOneShot (AttackSound);					
@@ -125,31 +130,40 @@ public class Spider : MonoBehaviour {
 				else
 				{
 					//change to the walk mesh
-					if (CurAnimation != Animations.Walk)
+					if (CurAnimation != AnimationsEnum.Walk)
 					{
-						CurAnimation = Animations.Walk;
-						walk.renderer.enabled = true;
-						attack.renderer.enabled = false;
+						CurAnimation = AnimationsEnum.Walk;
+						mesh.animation.CrossFade ( "Walk");
 						//attack.animation.Play("Take 001");							
 					}
 					
+					if (mesh.animation.isPlaying == false)
+					{
+						mesh.animation.Play ( "Walk");
+					}
+						
 					//Move towards the player
 					transform.LookAt(player.transform.position);				
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
+					Debug.Log("moved towards player");
 				}			
 			}
 			else
 			{
 				//change to the walk mesh if we aren't on it
-				if (CurAnimation != Animations.Walk)
+				if (CurAnimation != AnimationsEnum.Walk)
 				{
-					CurAnimation = Animations.Walk;
-					walk.renderer.enabled = true;
-					attack.renderer.enabled = false;
+					CurAnimation = AnimationsEnum.Walk;
+					mesh.animation.CrossFade ("Walk");
+					
 					//attack.animation.Play("Take 001");							
 				}
-					
+				if (mesh.animation.isPlaying == false)
+				{
+					mesh.animation.Play ("Walk");
+				}
+			
 				
 				lastAttack = 0f;
 				Attacking = false;
@@ -160,12 +174,14 @@ public class Spider : MonoBehaviour {
 				if (pointRange > distanceToNewPos)
 				{
 					//Find a new random position within the movement radius
-					newPos = startPos + (Random.insideUnitSphere * MovementRadius);
-					//Vector3 relativePos = newPos - transform.position;
-        
-					//newRot = Quaternion.LookRotation(relativePos);
 					
+					Vector3 playerPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 					
+					do
+					{
+						newPos = startPos + (Random.insideUnitSphere * MovementRadius);
+						newPos = new Vector3(newPos.x,playerPos.y ,newPos.z);
+					} while(Physics.Raycast(playerPos, newPos,Vector3.Distance (playerPos,newPos)));
 				}
 				else
 				{
@@ -173,7 +189,7 @@ public class Spider : MonoBehaviour {
 					transform.LookAt(newPos);
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
-					
+					Debug.Log ("Moved towards newPos");
 					
 					/*
 					//if (Mathf.Abs((float)(newRot.eulerAngles.y - transform.rotation.eulerAngles.y)) > 1f)
@@ -198,6 +214,21 @@ public class Spider : MonoBehaviour {
 		}
 		else
 		{
+			//change to the walk mesh if we aren't on it
+				if (CurAnimation != AnimationsEnum.Dead)
+				{
+					CurAnimation = AnimationsEnum.Dead;
+					mesh.animation.CrossFade ("Dead");					
+					//attack.animation.Play("Take 001");							
+				}
+			
+			if (mesh.animation.isPlaying == false)
+			{
+				Destroy (gameObject);
+			}
+			
+			/*
+			
 			//Spider has been killed.  Play death animation then destroy.
 			if (deathFlashCount >= 10)
 			{
@@ -227,18 +258,21 @@ public class Spider : MonoBehaviour {
 					lastDeathFlash += Time.deltaTime;					
 				}
 			}
+			
+			*/
+			
 		}
 	}
-	/*
+	
+	
 	void OnDrawGizmos()
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawSphere(new Vector3(newPos.x,0,newPos.z),1f);
-		GameObject pointer = GameObject.Find ("pointer");
-		//pointer.transform.rotation = new Vector3(newRot.x, 0, newRot.z);
-		pointer.transform.eulerAngles = new Vector3(0, newRot.eulerAngles.y, 0);
-		pointer.transform.position = transform.position ;
-	}*/
+		Gizmos.DrawLine(transform.position,newPos);
+		
+	
+	}
 	
 	public void Die()
 	{
