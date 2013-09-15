@@ -40,12 +40,12 @@ public class ArrowShooter : MonoBehaviour {
 		}
 
 		Arrow newArrow = Instantiate(arrowPrefab, transform.position, transform.rotation) as Arrow;
-		if (newArrow == null) {
+		/*if (newArrow == null) {
 			Debug.LogError("Couldn't instantiate arrow!");
 			return;
-		}
+		}*/
 		
-		Destroy (newArrow,30);
+		Destroy (newArrow.gameObject,20);
 		arrowTimer += arrowCooldown;
 		float impulse = Mathf.Lerp(minImpulse, maxImpulse, amountCharged);
 		newArrow.rigidbody.AddForce(impulse * newArrow.transform.forward, ForceMode.Impulse);
