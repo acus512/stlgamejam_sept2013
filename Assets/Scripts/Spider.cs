@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class Spider : MonoBehaviour {
 	enum Animations
 	{
@@ -16,7 +17,9 @@ public class Spider : MonoBehaviour {
 	public float AttackRange = 1f;
 	public float AttackDamage = 10f;
 	public float TimeBetweenAttacks = .5f;
-	
+	public AudioClip[] SoundList;
+	public AudioClip AttackSound;
+	public AudioClip SpiderHitSound;
 	//private vars
 	Vector3 startPos;
 	Vector3 newPos;
@@ -36,6 +39,9 @@ public class Spider : MonoBehaviour {
 	Animations CurAnimation;
 	float RotateSpeed = .01f;
 	Quaternion newRot;
+	float soundWait = 0f;
+	float lastSound = 0f;
+	AudioSource soundPlayer;
 	
 	// Use this for initialization
 	void Start () {
@@ -47,12 +53,35 @@ public class Spider : MonoBehaviour {
 		walk = transform.FindChild ("Walk").gameObject.transform.FindChild("spider_1").gameObject;
 		attack = transform.FindChild("Attack").gameObject.transform.FindChild("spider_1").gameObject;
 		CurAnimation = Animations.Walk;
+		soundWait = Random.Range(0f, 10f);
+		soundPlayer = GetComponent<AudioSource>();
+		
 	}	
 	
 	// Update is called once per frame
 	void Update () {
 		if (die == false)
 		{
+			
+			//Play sound if soundWait has elapsed, otherwise
+			if (lastSound > soundWait && soundPlayer.isPlaying == false )
+			{		
+				int max = SoundList.Length;
+				int i = Random.Range(0,max);
+				soundPlayer.PlayOneShot(SoundList[i]);
+				lastSound = 0f;
+				soundWait = Random.Range(0f, 10f);
+
+				
+			}
+			else
+			{
+				//continue waiting
+				lastSound += Time.deltaTime;
+			}
+			
+			
+			
 			if (player != null)
 			{
 				flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
@@ -84,8 +113,7 @@ public class Spider : MonoBehaviour {
 					//Attack player
 					if (lastAttack > TimeBetweenAttacks)
 					{
-						
-						
+						soundPlayer.PlayOneShot (AttackSound);					
 						player.SendMessage("TakeDamage",AttackDamage,SendMessageOptions.DontRequireReceiver);
 						lastAttack = 0f;
 					}
@@ -96,7 +124,7 @@ public class Spider : MonoBehaviour {
 				}
 				else
 				{
-					//change to the attack mesh
+					//change to the walk mesh
 					if (CurAnimation != Animations.Walk)
 					{
 						CurAnimation = Animations.Walk;
@@ -106,9 +134,8 @@ public class Spider : MonoBehaviour {
 					}
 					
 					//Move towards the player
-									
+					transform.LookAt(player.transform.position);				
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
-					//rigidbody.AddForce (transform.forward *MovementSpeed );
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
 				}			
 			}
@@ -134,19 +161,15 @@ public class Spider : MonoBehaviour {
 				{
 					//Find a new random position within the movement radius
 					newPos = startPos + (Random.insideUnitSphere * MovementRadius);
-					Vector3 relativePos = newPos - transform.position;
+					//Vector3 relativePos = newPos - transform.position;
         
-					newRot = Quaternion.LookRotation(relativePos);
+					//newRot = Quaternion.LookRotation(relativePos);
 					
 					
 				}
 				else
 				{
 					//not at new position, so move some towards it.
-					
-					
-							
-					
 					transform.LookAt(newPos);
 					transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
 					rigidbody.MovePosition(transform.position + (transform.forward * MovementSpeed * Time.deltaTime) );
@@ -196,19 +219,7 @@ public class Spider : MonoBehaviour {
 							break;
 					}
 					
-					/*
-					Renderer[] rs = GetComponentsInChildren<Renderer>();
-
-					foreach(Renderer r in rs)
-					{
-						r.enabled = !r.enabled ;
-					}*/
-     					
-					
-					
-					
 					deathFlashCount += 1;
-					//transform.transform[0].renderer.enabled = !transform.renderer.enabled;
 					lastDeathFlash = 0f;
 				}
 				else

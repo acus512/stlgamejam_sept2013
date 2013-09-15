@@ -6,6 +6,8 @@ public class Stats : MonoBehaviour {
 	private float timerSecond = 0;
 	private float timer5Second = 0;
 	
+	public AudioClip HitSound;
+	
 	// Main player health indicator
 	public float health = 100.0f;
 	public float Health
@@ -25,6 +27,11 @@ public class Stats : MonoBehaviour {
 	// Method for removing health
 	public void TakeDamage(float damage)
 	{
+		if (HitSound != null)
+		{
+			GetComponent<AudioSource>().PlayOneShot(HitSound);			
+		}
+		
 		health -= damage;
 		if (health <= 0)
 		{
