@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour {
 	public float jumpSpeed = 100f;
 	public float gravityChangeSpeed = 3f;
 	public GameObject camera;
+	public GameObject menuObject;
 	
 	public bool collidesBelow = false;
 	public Vector3 gravity;
@@ -34,7 +35,13 @@ public class PlayerMovement : MonoBehaviour {
 		if(Input.GetButtonDown("Menu"))
 		{
 			lockControls = !lockControls;
-			Time.timeScale = 0;
+			if(Time.timeScale > 0)
+			{
+				menuObject.SetActive(true);
+				Time.timeScale = 0;
+			}else{
+				menuObject.SetActive(false);	
+			}
 		}
 		if(!lockControls)
 		{
@@ -61,7 +68,12 @@ public class PlayerMovement : MonoBehaviour {
 			//Rotation (based on gameobject, not camera look
 			//Turns based on degrees per second. 3 = 3 degrees per second, 50 means the turn speed is capped at 50degrees per second.
 			transform.Rotate(new Vector3(0,(Input.GetAxis("Mouse X")+-Input.GetAxis("JoyX"))*turnSpeed*Time.deltaTime,0));
-			camera.transform.Rotate(new Vector3((-Input.GetAxis("Mouse Y")+-Input.GetAxis("JoyY"))*turnSpeed*Time.deltaTime,0f,0f));
+			if(bool.Parse(PlayerPrefs.GetString("Invert","false")))
+			{
+				camera.transform.Rotate(new Vector3((Input.GetAxis("Mouse Y")+Input.GetAxis("JoyY"))*turnSpeed*Time.deltaTime,0f,0f));
+			}else{
+				camera.transform.Rotate(new Vector3((-Input.GetAxis("Mouse Y")+-Input.GetAxis("JoyY"))*turnSpeed*Time.deltaTime,0f,0f));
+			}
 		}else{
 			//Time.timeScale = 0;
 		}
