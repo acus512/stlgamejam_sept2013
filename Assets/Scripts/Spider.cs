@@ -190,11 +190,11 @@ public class Spider : MonoBehaviour {
 					
 					Vector3 playerPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
 					
-					do
-					{
+					//do
+					//{
 						newPos = startPos + (Random.insideUnitSphere * MovementRadius);
 						newPos = new Vector3(newPos.x,playerPos.y ,newPos.z);
-					} while(Physics.Raycast(playerPos, newPos,Vector3.Distance (playerPos,newPos) + 3f));
+					//} while(Physics.Raycast(playerPos, newPos,Vector3.Distance (playerPos,newPos) + 3f));
 					
 					TimeSinceLastPoint = 0f;
 				}
