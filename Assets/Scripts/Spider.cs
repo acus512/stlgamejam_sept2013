@@ -26,7 +26,7 @@ public class Spider : MonoBehaviour {
 	//private vars
 	Vector3 startPos;
 	Vector3 newPos;
-	float pointRange = .5f;
+	float pointRange = 2f;
 	Vector3 flatTransform;
 	Vector3 flatNewPos;
 	public float distanceToNewPos;
@@ -44,7 +44,8 @@ public class Spider : MonoBehaviour {
 	float soundWait = 0f;
 	float lastSound = 0f;
 	AudioSource soundPlayer;
-	
+	float AttemptTime = 5f;
+	float TimeSinceLastPoint = 0f;
 	// Use this for initialization
 	void Start () {
 		
@@ -167,9 +168,21 @@ public class Spider : MonoBehaviour {
 				
 				lastAttack = 0f;
 				Attacking = false;
-				flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
-				flatNewPos = new Vector3(newPos.x, 0, newPos.z);
-				distanceToNewPos = Vector3.Distance(flatTransform, flatNewPos);
+				
+				if (AttemptTime < TimeSinceLastPoint)
+				{
+					distanceToNewPos = 0f;
+				}
+				else
+				{
+					flatTransform = new Vector3(transform.position.x, 0, transform.position.z);
+					flatNewPos = new Vector3(newPos.x, 0, newPos.z);
+					distanceToNewPos = Vector3.Distance(flatTransform, flatNewPos);
+					TimeSinceLastPoint += Time.deltaTime;
+				}
+				
+				
+				
 				
 				if (pointRange > distanceToNewPos)
 				{
@@ -181,7 +194,9 @@ public class Spider : MonoBehaviour {
 					{
 						newPos = startPos + (Random.insideUnitSphere * MovementRadius);
 						newPos = new Vector3(newPos.x,playerPos.y ,newPos.z);
-					} while(Physics.Raycast(playerPos, newPos,Vector3.Distance (playerPos,newPos)));
+					} while(Physics.Raycast(playerPos, newPos,Vector3.Distance (playerPos,newPos) + 3f));
+					
+					TimeSinceLastPoint = 0f;
 				}
 				else
 				{
@@ -267,9 +282,11 @@ public class Spider : MonoBehaviour {
 	
 	void OnDrawGizmos()
 	{
+		Vector3 playerPos = new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z);
+					
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawSphere(new Vector3(newPos.x,0,newPos.z),1f);
-		Gizmos.DrawLine(transform.position,newPos);
+		Gizmos.DrawLine(playerPos,newPos);
 		
 	
 	}
