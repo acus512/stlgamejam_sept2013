@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour {
 			Destroy(gameObject.transform.FindChild("Capsule").collider);
 			break;
 		case "StartButton":
-			Application.LoadLevel ("Spider Test Scene");
+			Application.LoadLevel (1);
 			break;
 		case "ExitButton":
 			Debug.Log("Chose to exit.");
