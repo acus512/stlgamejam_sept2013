@@ -4,7 +4,7 @@ using System.Collections;
 public class WinScript : MonoBehaviour {
 	
 	public bool won = false;
-	float wait = 10;
+	float wait = 35;
 	float curTime = 0;
 	public Texture2D texture;
 	// Use this for initialization
@@ -22,10 +22,7 @@ public class WinScript : MonoBehaviour {
 			GUI.DrawTexture(new Rect(0,0,Screen.width, Screen.height),texture);
 			if(curTime >= wait)
 			{
-				if(bool.Parse(PlayerPrefs.GetString("won", "false")))
-				{
-					Application.LoadLevel("Credits");
-				}
+				Application.LoadLevel("Credits");
 			}
 		}
 	}

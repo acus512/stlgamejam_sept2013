@@ -52488,10 +52488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688999cbaa7cf2f4f9aae812be9a6520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 1000
-  runMultiplyer: 1.5
+  playerSpeed: 300
+  runMultiplyer: 2
   turnSpeed: 200
-  jumpSpeed: 600
+  jumpSpeed: 350
   gravityChangeSpeed: 3
   camera: {fileID: 759012720}
   menuObject: {fileID: 1839148497}
@@ -107360,11 +107360,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400016, guid: d03ce78a6f6bc284390ca636ace88a4b, type: 2}
       propertyPath: playerSpeed
-      value: 1000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 11400016, guid: d03ce78a6f6bc284390ca636ace88a4b, type: 2}
       propertyPath: jumpSpeed
-      value: 600
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 11400016, guid: d03ce78a6f6bc284390ca636ace88a4b, type: 2}
       propertyPath: deadTexture
@@ -107374,6 +107374,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: 607d10c015997443cba29f02424635ae, type: 3}
+    - target: {fileID: 11400016, guid: d03ce78a6f6bc284390ca636ace88a4b, type: 2}
+      propertyPath: runMultiplyer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d03ce78a6f6bc284390ca636ace88a4b, type: 2}
   m_RootGameObject: {fileID: 977258735}
